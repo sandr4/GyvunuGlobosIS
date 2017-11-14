@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+.env
+.idea
+
+public/database/users/*
+!public/database/users/1
