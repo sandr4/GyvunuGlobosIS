@@ -55,12 +55,10 @@ class RateController extends Controller
      */
     public function store(Request $request, $room_id)
     {
-        $value_id = StarsValue::where('value', $request->input('value_id')) -> first()-> id;
         $this->validate($request, array(
             'name'      =>  'required|max:255',
             'email'     =>  'required|email|max:255',
             'comment'   =>  'required|min:5|max:2000',
-            'value_id'  =>  'required',
             'photo_fk'  =>  'required',
             ));
 
@@ -70,7 +68,6 @@ class RateController extends Controller
         $comment->name = $request->name;
         $comment->email = $request->email;
         $comment->comment = $request->comment;
-        $comment->value_id = $request->value_id;
         $comment->photo_fk = $request->photo_fk;
         $comment->approved = true;
         $comment->room()->associate($room);

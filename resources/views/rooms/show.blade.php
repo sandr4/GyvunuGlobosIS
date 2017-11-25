@@ -103,50 +103,7 @@
 
           <div class="comment-content">
             {{ $comment->comment }}
-   <div>        
-@if($comment->value_id == 0)
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if($comment->value_id == 1)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if($comment->value_id == 2)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if($comment->value_id == 3)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if($comment->value_id == 4)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if($comment->value_id == 5)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>        
-@endif
-</div>
+
           </div>
 
         </div>
@@ -177,21 +134,13 @@
             {{ Form::label('comment', "Komentaras:") }}
             {{ Form::textarea('comment', null, ['class' => 'form-control', 'required' => '', 'rows' => '5']) }}
 
-       <div class="col-md-6">
-        {{ Form::label('value_id','Įvertinimas:') }}
-  <span class=" glyphicon glyphicon-star icon-success">{{ Form::radio('value_id', '1') }}</span>
-  <span class=" glyphicon glyphicon-star icon-success">{{ Form::radio('value_id', '2') }}</span>   
-  <span class=" glyphicon glyphicon-star icon-success">{{ Form::radio('value_id', '3') }}</span> 
-  <span class=" glyphicon glyphicon-star icon-success">{{ Form::radio('value_id', '4') }}</span> 
-  <span class=" glyphicon glyphicon-star icon-success">{{ Form::radio('value_id', '5') }}</span>
-        </div>
 
 @if(Auth::user()->user_information->photo_fk != 0)
   <input type="hidden" name="photo_fk" class="form-control" id="photo_fk" value="{{ Auth::user()->user_information->photo->id }}">
 @else  <input type="hidden" name="photo_fk" class="form-control" id="photo_fk" value="0">
 @endif
             <div class="col-md-12">
-           {{ Form::submit('Vertinti', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top:15px;']) }}
+           {{ Form::submit('Pridėti komentarą', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top:15px;']) }}
           </div>
 
 @endif

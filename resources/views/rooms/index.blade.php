@@ -9,14 +9,14 @@
 
   <div class="row">
     <div class="col-md-10">
-      <h1>Kambariai</h1>
+      <h1>Gyvūnai</h1>
     </div>
         @if(Auth::check())
         @if( Auth::user()->Role->id == 1)
         
     <div class="col-md-2">
-      <a href="{{ route('rooms.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti kambarį</a>
-      <a href="{{ route('amenities.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti patogumus</a>
+      <a href="{{ route('rooms.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti gyvūną</a>
+      <a href="{{ route('amenities.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti kažką</a>
     </div>
         @endif
         @endif
@@ -31,7 +31,7 @@
         <thead>
           <th> </th>
           <th>Tipas</th>
-          <th>Kaina</th>
+          <th>Amžius</th>
           <th>Aprašymas</th> 
 
           <th></th>
@@ -62,7 +62,7 @@
               @endif
 
 
-              <td>{{ $room->price }} €</td>
+              <td>{{ $room->price }}</td>
      
               <td>{{ substr($room->body, 0, 50) }}{{ strlen($room->body) > 50 ? "..." : "" }}</td>
 
