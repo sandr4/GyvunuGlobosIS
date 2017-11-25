@@ -1,6 +1,6 @@
 @extends('GyvunuGloba.Layout.main')
 
-@section('title','|Visi kambariai')
+@section('title','|Visi gyvūnai')
 
 @section('width') <div class="col-md-12"> @endsection
 
@@ -52,13 +52,13 @@
 
 
               @if($room->room_type_fk  == '0')
-              <td>Vienvietis</td>
+              <td>Šuo</td>
               @elseif($room->room_type_fk  == '1')
-               <td>Dvivietis</td>
+               <td>Katė</td>
               @elseif($room->room_type_fk  == '2')
-               <td>Trivietis</td>
+               <td>Šinšila</td>
               @elseif($room->room_type_fk  == '3')
-               <td>Keturvietis</td>
+               <td>Jūrų kiaulyė</td>
               @endif
 
 

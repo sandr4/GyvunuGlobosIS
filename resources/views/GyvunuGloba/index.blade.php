@@ -20,16 +20,16 @@
          
               @if($room->room_type_fk  == '0')
 
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Vienvietis kambarys</a>
+              <h4><a href="{{ route('rooms.show', $room->id) }}">Šuo</a>
               @endif
               @if($room->room_type_fk  == '1')
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Dvivietis kambarys</a>
+              <h4><a href="{{ route('rooms.show', $room->id) }}">Katė</a>
               @endif
               @if($room->room_type_fk  == '2')
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Trivietis kambarys</a>
+              <h4><a href="{{ route('rooms.show', $room->id) }}">Šinšila</a>
               @endif
               @if($room->room_type_fk  == '3')
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Keturvietis kambarys</a>
+              <h4><a href="{{ route('rooms.show', $room->id) }}">Jūrų Kiaulytė</a>
               @endif
               </h4>
               <p>{{ substr($room->body, 0, 50) }}{{ strlen($room->body) > 50 ? "..." : "" }} </p>
