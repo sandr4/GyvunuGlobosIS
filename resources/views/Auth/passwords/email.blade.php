@@ -1,4 +1,4 @@
-@extends('KambariuRezervacija.Layout.main')
+@extends('GyvunuGloba.Layout.main')
 @section('title', ' Slaptažodžio atsatymas')
 @section('width') <div class="col-md-12" style="padding-top: 100px;" > @endsection
 @section('content')

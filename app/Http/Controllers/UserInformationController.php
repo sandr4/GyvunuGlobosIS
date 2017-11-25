@@ -24,7 +24,7 @@ class UserInformationController extends Controller
 {
 	public function registration()
 	{
-		return view('KambariuRezervacija.registration')->with('data', AgeGroup::all());
+		return view('GyvunuGloba.registration')->with('data', AgeGroup::all());
 	}   
 
 	public function store(Request $request)
@@ -97,7 +97,7 @@ class UserInformationController extends Controller
                 'age_groupes'       => AgeGroup::all(),
                 'confirmed_emails'  => EmailConfirm::where('user_fk', $id)->where('state_fk', 1)->get(),
             );
-            return view('KambariuRezervacija.profile')->with('data', $data);
+            return view('GyvunuGloba.profile')->with('data', $data);
         }
         else
         {

@@ -1,4 +1,4 @@
-@extends('KambariuRezervacija.Layout.main')
+@extends('GyvunuGloba.Layout.main')
 
 @section('title','|Visos ataskaitos')
 
