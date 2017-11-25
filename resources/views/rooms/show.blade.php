@@ -1,6 +1,6 @@
 @extends('GyvunuGloba.Layout.main')
 
-@section('title','|Peržiūrėti kambarį')
+@section('title','|Peržiūrėti gyvūną')
 
 @section('width') <div class="col-md-12"> @endsection
 
@@ -10,7 +10,7 @@
 
   <div class="row">
     <div class="col-md-10">
-      <h1>Kambarys</h1>
+      <h1>Gyvūnas</h1>
     </div>
 
     <div class="col-md-2">
@@ -31,88 +31,26 @@
 
 <div class="col-md-12 well">
   <div class="col-md-6 well">
-      <h1>Kambario informacija</h1>
+      <h1>Globotinio informacija</h1>
       <hr>
-    <h3>Kambario numeris: <small>{{ $data['room']->number }}</small></h3>
+    <h3>Globotinio esama vieta: <small>{{ $data['room']->number }}</small></h3>
         @if($data['room']->room_type_fk  == '0')
-    <h3>Kambario tipas: <small>Vienvietis</small></h3>
+    <h3>Gyvūnas: <small>Šuo</small></h3>
     @elseif($data['room']->room_type_fk  == '1')
-     <h3>Kambario tipas: <small>Dvivietis</small></h3>
+     <h3>Gyvūnas: <small>Katė</small></h3>
     @elseif($data['room']->room_type_fk  == '2')
-     <h3>Kambario tipas: <small>Trivietis</small></h3>
+     <h3>Gyvūnas: <small>Šinšila</small></h3>
     @else
-     <h3>Kambario tipas: <small>Keturvietis</small></h3>
+     <h3>Gyvūnas: <small>Jūrų Kiaulytė</small></h3>
      @endif
-    <h3>Kambario kaina: <small>{{ $data['room']->price }} €</small></h3>
-    <h3>Kambario aprašymas: <small>{{ $data['room']->body }}</small></h3>
+    <h3>Gyvūno amžius: <small>{{ $data['room']->number }} </small></h3>
+    <h3>Gyvūno aprašymas: <small>{{ $data['room']->body }}</small></h3>
  <div>
-        
-        @foreach($data['catt'] as $type)  
-        @endforeach
-        <h3>Kambario patogumai:<small>
-        @if($data['cat1'] != NULL )
-        @foreach($data['cat1'] as $types)
-           @if( $data['room']->id == $types->room_id) 
-               @foreach($data['catt'] as $type) 
-                  @if ($types -> amenity_id == $type -> id )
-                      <span class="glyphicon glyphicon-ok icon-success2"></span> {{ $type -> name }}</span>  
-                  @endif
-                @endforeach
-          @endif
-        @endforeach
-        @endif
-        <small></h3>
        
  </div>
-<div class="comment" type=number step=0.01>
-     <h3>Kambario įvertinimas: <small>{{ round($data['average']) }}/5</small>
-@if(round($data['average']) == 0)
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if(round($data['average']) == 1)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if(round($data['average']) == 2)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if(round($data['average']) == 3)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if(round($data['average']) == 4)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star-empty icon-success"></span>        
-@endif
-@if(round($data['average']) == 5)
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>
-                  <span class="glyphicon glyphicon-star icon-success"></span>        
-@endif
-
-</div>
   </div>
   <div class="col-md-6 well">
-      <h1>Kambario nuotrauka</h1>
+      <h1>Gyvūno nuotrauka</h1>
       <hr>
     <div class="my-slider">
 <ul>
@@ -139,7 +77,7 @@
 <h3 class="comments-title"><span class="glyphicon glyphicon-comment"></span>{{ $data['room']->rate()->count() }} Komentarai</h3>
 @if(Auth::check())
 @else
-<div class="comment-content">Norint peržiūrėti komenterus/ įvertinti kambrį - prisijunkite!</div>
+<div class="comment-content">Norint peržiūrėti komenterus - prisijunkite!</div>
 @endif
 
            @foreach($data['room']->rate as $comment)
