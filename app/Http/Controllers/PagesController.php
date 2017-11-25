@@ -19,7 +19,7 @@ class PagesController extends Controller
             //'users'		=> $users,
             //'cat'		=> $cat,
         );
-		return view("KambariuRezervacija.index")->with('data', $data);
+		return view("GyvunuGloba.index")->with('data', $data);
 	}
 
 	public function home() {
@@ -47,7 +47,7 @@ class PagesController extends Controller
 		if(Auth::user()->state->id == 2){
 			return redirect('/registration');
 		}
-		return view("KambariuRezervacija.index")->with('data', $data);
+		return view("GyvunuGloba.index")->with('data', $data);
 	}
 
 }

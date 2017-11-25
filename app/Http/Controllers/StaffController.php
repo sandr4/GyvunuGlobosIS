@@ -25,7 +25,7 @@ class StaffController extends Controller
         $data = array(
             'users' => User::where('role_fk', 2)->paginate(3),
         );
-        return view("KambariuRezervacija.Staff.staff")->with('data', $data);
+        return view("GyvunuGloba.Staff.staff")->with('data', $data);
     }
 
     /**
@@ -38,7 +38,7 @@ class StaffController extends Controller
         
         if(Auth::user()->Role->id == 1)
         {
-            return view("KambariuRezervacija.Staff.staffRegistration");
+            return view("GyvunuGloba.Staff.staffRegistration");
         }
         else
         {
@@ -80,7 +80,7 @@ class StaffController extends Controller
         if($user && Auth::user()->Role->id == 1)
         {
             Session::flash('staffID', $id);
-            return view('KambariuRezervacija.registration')->with('data', AgeGroup::all());
+            return view('GyvunuGloba.registration')->with('data', AgeGroup::all());
         }
         else
         {
