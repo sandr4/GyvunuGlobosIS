@@ -19,9 +19,15 @@
                     </li>
                     @if(Auth::check())
                     <li>
-                        <a href="{{ url('rooms') }}">Kambariai</a>
+                        <a href="{{ url('rooms') }}">Gyvūnai</a>
                     </li>
                     @endif
+                    <li>
+                        <a href="{{ url('/') }}">Kontaktai</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/') }}">Apie</a>
+                    </li>
                 </ul>
                 <!-- /. Login form -->
                 @if(!Auth::check())
