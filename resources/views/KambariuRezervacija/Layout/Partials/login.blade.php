@@ -43,5 +43,5 @@
     </li>
 </ul>
 @section('scripts')
-    <script src="/Style/Js/login_register.js"></script>
+    <script src="{!! URL::asset('Style/Js/login_register.js'); !!}"></script>
 @endsection
