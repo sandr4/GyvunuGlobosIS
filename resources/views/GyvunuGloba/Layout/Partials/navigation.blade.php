@@ -19,7 +19,7 @@
                     </li>
                     @if(Auth::check())
                     <li>
-                        <a href="{{ url('rooms') }}">Gyvūnai</a>
+                        <a href="{{ url('animals') }}">Gyvūnai</a>
                     </li>
                     @endif
                     <li>

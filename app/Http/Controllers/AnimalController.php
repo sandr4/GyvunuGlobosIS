@@ -20,15 +20,15 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 use Image;
 use Storage;
-use App\Room;
+use App\Animal;
 use App\Rate;
-use App\RatedRooms;
-use App\RoomType;
+use App\RatedAnimals;
+use App\AnimalType;
 use App\StarsValue;
 use App\Amenities;
-use App\AmenityRooms;
+use App\AmenityAnimals;
 
-class RoomController extends Controller
+class AnimalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,13 +37,13 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::all();
+        $animals = Animal::all();
         $data = array(
-            'rooms'    => $rooms,
-            'count'    => Room::count(),
+            'animals'    => $animals,
+            'count'    => Animal::count(),
         );
    
-        return view('rooms.index')->with('data', $data);
+        return view('animals.index')->with('data', $data);
     }
     /**
      * Show the form for creating a new resource.
@@ -56,16 +56,16 @@ class RoomController extends Controller
         if(Auth::check()){
         if(Auth::user()->Role->id == 1)
         {
-        foreach(RoomType::all() as $ce){$room[]= $ce -> name;}
+        foreach(animalType::all() as $ce){$animal[]= $ce -> name;}
         foreach(Amenities::all() as $ct){$cat[]= $ct; }
             $data = array(
-                'room' => $room,
+                'animal' => $animal,
                 'cat' => $cat,
             );
-        return view('rooms.create')->with('data', $data);
+        return view('animals.create')->with('data', $data);
         }
         }
-       return redirect('/rooms');
+       return redirect('/animals');
     }
     /**
      * Store a newly created resource in storage.
@@ -85,61 +85,61 @@ class RoomController extends Controller
             'number'        => 'required|max:3',
             'price'         => 'required|max:4',
             'body'          => 'required',
-            'room_type_fk'  => 'required',
-            'room_image'    => 'sometimes|image'
+            'animal_type_fk'  => 'required',
+            'animal_image'    => 'sometimes|image'
             
             ));
             //tikrinu ar kambario numeris neegzistuoja
             $v = Validator::make($request->all(), []);  
-            if(Room::where('number', $request->input('number'))->exists())
+            if(Animal::where('number', $request->input('number'))->exists())
             {
                 Session::flash('warning', 'Kambario numeris jau egzistuoja!');
                 return redirect()->back()->withErrors($v->errors())->withInput();
             }
 
         // store in the database
-        $room = new Room;
-        $room -> number       = $request -> number;
-        $room -> price        = $request -> price;
-        $room -> body         = $request -> body;
-        $room -> room_type_fk = $request -> room_type_fk;
+        $animal = new Animal;
+        $animal -> number       = $request -> number;
+        $animal -> price        = $request -> price;
+        $animal -> body         = $request -> body;
+        $animal -> animal_type_fk = $request -> animal_type_fk;
 
         //save image
         if($request->hasFile('avatar')){
-            $room_image = $request->file('avatar');
-            $ext = $room_image->getClientOriginalExtension();
+            $animal_image = $request->file('avatar');
+            $ext = $animal_image->getClientOriginalExtension();
             $filename = time(). '.' . $ext;
-            $location = public_path('database/rooms/'. $filename);
-            File::isDirectory(public_path('database/rooms/')) or File::makeDirectory(public_path('database/rooms/'), 0777, true, true);
-            $img = Image::make($room_image)->resize(250, 250)->save($location);
+            $location = public_path('database/animals/'. $filename);
+            File::isDirectory(public_path('database/animals/')) or File::makeDirectory(public_path('database/animals/'), 0777, true, true);
+            $img = Image::make($animal_image)->resize(250, 250)->save($location);
 
         //Photo
             $photo = new Photo;
-            $photo->url       = 'database/rooms/' . $filename;
+            $photo->url       = 'database/animals/' . $filename;
             $photo->ext       = $ext;
             $photo->size      = $img->filesize();
             $photo->cover     = 1;
             $photo->save();
-            $room -> photo_fk = $photo->url;
+            $animal -> photo_fk = $photo->url;
         }
         
-        $room -> save();
+        $animal -> save();
 
         //save_amenities
          if($request->input('amenities')!= NULL){
                     foreach ($request->input('amenities') as $amenitie) {
-            $amenitie_room = new AmenityRooms;
-            $amenitie_room->room_id = $room->id;
-            $amenitie_room->amenity_id = $amenitie;
-            $amenitie_room -> save();
+            $amenitie_animal = new Amenityanimals;
+            $amenitie_animal->animal_id = $animal->id;
+            $amenitie_animal->amenity_id = $amenitie;
+            $amenitie_animal -> save();
         }
         }
         //sėkmės pranešimas
-        Session::flash('succsess', 'Naujas kambarys pridėtas.');
+        Session::flash('succsess', 'Naujas gyvūnas pridėtas.');
         //redirect to another page
-        return redirect() -> route('rooms.show',$room->id);          
+        return redirect() -> route('animals.show',$animal->id);
         }
-    }else{ return redirect('/rooms');}
+    }else{ return redirect('/animals');}
 }
     /**
      * Display the specified resource.
@@ -150,16 +150,16 @@ class RoomController extends Controller
     public function show($id)
     {
 
-       $room=Room::find($id);
-       $average=Rate::where('room_id', $id) -> avg('value_id');
+       $animal=Animal::find($id);
+       $average=Rate::where('animal_id', $id) -> avg('value_id');
        foreach(Amenities::all() as $ce){$catt[]= $ce;}
         foreach(Photo::all() as $cee){$foto[]= $cee;}
        
-       foreach(AmenityRooms::all() as $cem){$cat1[]= $cem;}
+       foreach(Amenityanimals::all() as $cem){$cat1[]= $cem;}
        foreach(StarsValue::all() as $ct){$cat[]= $ct -> value;}
        if($cat1!=NULL){
                 $data = array(
-                'room' => $room,
+                'animal' => $animal,
                 'cat' => $cat,
                 'average' => $average,
                 'catt' => $catt,
@@ -168,14 +168,14 @@ class RoomController extends Controller
                 );
        }else{
                 $data = array(
-                'room' => $room,
+                'animal' => $animal,
                 'cat' => $cat,
                 'average' => $average,
                 'catt' => $catt,
                 'foto'  => $foto,
                 );
        }
-        return view('rooms.show')->with('data',$data); 
+        return view('animals.show')->with('data',$data);
 }
     /**
      * Show the form for editing the specified resource.
@@ -196,27 +196,27 @@ class RoomController extends Controller
 
         if(Auth::check() && Auth::user()->Role->id == 1)
         {
-          $room = Room::find($id);
+          $animal = Animal::find($id);
           $cat = array();
           $amenities = Amenities::all();
           $amenities_result = array();
-          foreach(RoomType::all() as $ct){$cat[]= $ct -> name;}
+          foreach(animalType::all() as $ct){$cat[]= $ct -> name;}
           foreach($amenities as $amenitiy)
           {
             $amenities_result[] = (object)array(
               'id' => $amenitiy->id,
               'name' => $amenitiy->name,
-              'checked' => ($this->selected(AmenityRooms::where('room_id', $id)->get(), $amenitiy->id)) ? 'checked' : '',
+              'checked' => ($this->selected(Amenityanimals::where('animal_id', $id)->get(), $amenitiy->id)) ? 'checked' : '',
             );
           }
           $data = array(
-            'room' => $room,
+            'animal' => $animal,
             'cat' => $cat,
             'catt' => $amenities_result,
           );
-          return view('rooms.edit')->with('data',$data);
+          return view('animals.edit')->with('data',$data);
         }
-      return redirect('/rooms');
+      return redirect('/animals');
     }
 
     public function update(Request $request, $id)
@@ -227,24 +227,23 @@ class RoomController extends Controller
             'number'        => 'required|max:3',
             'price'         => 'required|max:4',
             'body'          => 'required',
-            'room_type_fk'  => 'required',
-            'room_image'    => 'image'
+            'animal_type_fk'  => 'required',
+            'animal_image'    => 'image'
             ));
 
         // Save to the database
-        $room = Room::find($id);
-        $room -> number       = $request -> input('number');
-        $room -> price        = $request -> input('price');
-        $room -> body         = $request -> input('body');
-        $room-> room_type_fk   = $request -> input('room_type_fk');
+        $animal = Animal::find($id);
+        $animal -> number       = $request -> input('number');
+        $animal -> price        = $request -> input('price');
+        $animal -> body         = $request -> input('body');
+        $animal -> animal_type_fk   = $request -> input('animal_type_fk');
 
             if($request->hasFile('avatar'))
             {
               //tikrinu ar yra nuotrauka
-            $photo;
-            if(Photo::where('url',$room->photo_fk)->exists())
+            if(Photo::where('url',$animal->photo_fk)->exists())
             {
-                  $id = Photo::where('url', $room->photo_fk) -> first() -> id;
+                  $id = Photo::where('url', $animal->photo_fk) -> first() -> id;
                   $photo = Photo::find($id);
                   //$photo->delete();
             }else
@@ -252,48 +251,48 @@ class RoomController extends Controller
                 $photo = new Photo;
             }
 
-            $room_image = $request->file('avatar');
-            $ext = $room_image->getClientOriginalExtension();
+            $animal_image = $request->file('avatar');
+            $ext = $animal_image->getClientOriginalExtension();
             $filename = time(). '.' . $ext;
-            $location = public_path('database/rooms/'. $filename);
+            $location = public_path('database/animals/'. $filename);
             
-            $img = Image::make($room_image)->resize(250, 250)->save($location);
-            $oldFilename = $room->photo_fk;
+            $img = Image::make($animal_image)->resize(250, 250)->save($location);
+            $oldFilename = $animal->photo_fk;
             //update
-            $room->photo_fk = 'database/rooms/'. $filename;
+            $animal->photo_fk = 'database/animals/'. $filename;
             //Photo
-            $photo->url     = 'database/rooms/' . $filename;
+            $photo->url     = 'database/animals/' . $filename;
             $photo->ext     = $ext;
             $photo->size    = $img->filesize();
             $photo->cover   = 1;
             $photo->save();
-            $room -> photo_fk = $photo->url;
+            $animal -> photo_fk = $photo->url;
             //delete
             File::delete(public_path($oldFilename));
             }
 
         //amenitie_remove
-        $id_amenity_room = AmenityRooms::where('room_id', $room->id) -> count();
-        if($id_amenity_room != NULL){
-          for ($x = 0; $x < $id_amenity_room; $x++) {
-            $id_amenity_roomm = AmenityRooms::where('room_id', $room->id) -> first() -> id;
-            $amenity = AmenityRooms::find($id_amenity_roomm);
+        $id_amenity_animal = Amenityanimals::where('animal_id', $animal->id) -> count();
+        if($id_amenity_animal != NULL){
+          for ($x = 0; $x < $id_amenity_animal; $x++) {
+            $id_amenity_animalm = Amenityanimals::where('animal_id', $animal->id) -> first() -> id;
+            $amenity = Amenityanimals::find($id_amenity_animalm);
             $amenity->delete();
           }  
         }
         //save_amenities
          if($request->input('amenities')!= NULL){
             foreach ($request->input('amenities') as $amenitie) {
-              $amenitie_room = new AmenityRooms;
-              $amenitie_room->room_id = $room->id;
-              $amenitie_room->amenity_id = $amenitie;
-              $amenitie_room -> save();
+              $amenitie_animal = new Amenityanimals;
+              $amenitie_animal->animal_id = $animal->id;
+              $amenitie_animal->amenity_id = $amenitie;
+              $amenitie_animal -> save();
         }}        
-        $room -> save();
+        $animal -> save();
         //set flash data with success message
         Session::flash('succsess', 'Informacija atnaujinta');
-        // redirect wth flash data to rooms.show
-        return redirect() -> route('rooms.show',$room->id);
+        // redirect wth flash data to animals.show
+        return redirect() -> route('animals.show',$animal->id);
 }
     /**
      * Remove the specified resource from storage.
@@ -307,44 +306,44 @@ class RoomController extends Controller
         if(Auth::user()->Role->id == 1)
         {
       
-        $room = Room::find($id2);
-        if($room->photo_fk != NULL){
-        $id = Photo::where('url', $room->photo_fk) -> first() -> id;
+        $animal = Animal::find($id2);
+        if($animal->photo_fk != NULL){
+        $id = Photo::where('url', $animal->photo_fk) -> first() -> id;
         $photo = Photo::find($id);
         $photo -> delete();
-        File::delete(public_path($room->photo_fk));
+        File::delete(public_path($animal->photo_fk));
 
         //amenitie_remove
-        $id_amenity_room = AmenityRooms::where('room_id', $room->id) -> count();
-        if($id_amenity_room != NULL){
-          for ($x = 0; $x < $id_amenity_room; $x++) {
-            $id_amenity_roomm = AmenityRooms::where('room_id', $room->id) -> first() -> id;
-            $amenity = AmenityRooms::find($id_amenity_roomm);
+        $id_amenity_animal = Amenityanimals::where('animal_id', $animal->id) -> count();
+        if($id_amenity_animal != NULL){
+          for ($x = 0; $x < $id_amenity_animal; $x++) {
+            $id_amenity_animalm = Amenityanimals::where('animal_id', $animal->id) -> first() -> id;
+            $amenity = Amenityanimals::find($id_amenity_animalm);
             $amenity->delete();
             }  
         }
 
         }else{
              //amenitie_remove
-             $id_amenity_room = AmenityRooms::where('room_id', $room->id) -> count();
-             for ($x = 0; $x < $id_amenity_room; $x++) {
-                $id_amenity_roomm = AmenityRooms::where('room_id', $room->id) -> first() -> id;
-                $amenity = AmenityRooms::find($id_amenity_roomm);
+             $id_amenity_animal = Amenityanimals::where('animal_id', $animal->id) -> count();
+             for ($x = 0; $x < $id_amenity_animal; $x++) {
+                $id_amenity_animalm = Amenityanimals::where('animal_id', $animal->id) -> first() -> id;
+                $amenity = Amenityanimals::find($id_amenity_animalm);
                 $amenity->delete();
                 }
             //rate_remove
-             $id_rated_room = RatedRooms::where('room_id', $room->id) -> count();
-             for ($x = 0; $x < $id_rated_room; $x++) {
-                $id_rated_roomm = RatedRooms::where('room_id', $room->id) -> first() -> id;
-                $rates = RatedRooms::find($id_rated_roomm);
+             $id_rated_animal = RatedAnimals::where('animal_id', $animal->id) -> count();
+             for ($x = 0; $x < $id_rated_animal; $x++) {
+                $id_rated_animalm = RatedAnimals::where('animal_id', $animal->id) -> first() -> id;
+                $rates = RatedAnimals::find($id_rated_animalm);
                 $rates->delete();
                 } 
           }
-        $room->delete();
-        Session::flash('succsess', 'Kambarys pašalintas');
-        return redirect()->route('rooms.index');
+        $animal->delete();
+        Session::flash('succsess', 'Gyvūnas pašalintas');
+        return redirect()->route('animals.index');
     }
     }
-    return redirect('/rooms');
+    return redirect('/animals');
 }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AmenityRooms extends Model
+class AmenityAnimals extends Model
 {
     //
     public function amenities()
@@ -13,7 +13,7 @@ class AmenityRooms extends Model
     }
     public function room()
     {
-    	return $this->belongsTo('App\Room');
+    	return $this->belongsTo('App\Animal');
     }
 
 }

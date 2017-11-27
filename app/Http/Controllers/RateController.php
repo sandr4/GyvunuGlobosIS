@@ -19,9 +19,9 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 
-use App\Room;
+use App\Animal;
 use App\Rate;
-use App\RatedRooms;
+use App\RatedAnimals;
 use App\StarsValue;
 use Session;
 
@@ -62,7 +62,7 @@ class RateController extends Controller
             'photo_fk'  =>  'required',
             ));
 
-        $room = Room::find($room_id);
+        $room = Animal::find($room_id);
 
         $comment = new Rate();
         $comment->name = $request->name;
@@ -78,7 +78,7 @@ class RateController extends Controller
 
         //$fcomment = Rate::find($rate_id);
 
-        $rated = new RatedRooms();   
+        $rated = new RatedAnimals();
         $rated->room()->associate($room);
         $rated->rate()->associate($comment1);
 

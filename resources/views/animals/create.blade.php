@@ -17,7 +17,7 @@
       <h1>Pridėti naują kambarį</h1>
       <hr>
 
-      {!! Form::open(array('route' => 'rooms.store', 'data-parsley-validate' =>'', 'files' => true)) !!}
+      {!! Form::open(array('route' => 'animals.store', 'data-parsley-validate' =>'', 'files' => true)) !!}
         {{ Form::label('number','Kambario numeris:') }}
         {{ Form::number('number',0, array('class' => 'form-control', 'required' => '')) }}
         {{ Form::label('price','Kaina:') }}
@@ -25,11 +25,11 @@
 
       
         <div class="form-group">
-            <label for="">Kambario tipas</label>
-            {{ Form::select('room_type_fk', $data['room'],null,array('class'=>'form-control','style'=>'width: 25%;')) }}
+            <label for="">Gyvūno tipas</label>
+            {{ Form::select('animal_type_fk', $data['animal'],null,array('class'=>'form-control','style'=>'width: 25%;')) }}
         </div>
       
-        <div class="checkbox" name="room_type_fk">
+        <div class="checkbox" name="animal_type_fk">
         @foreach($data['cat'] as $type)  
               <label>
                 <input type="checkbox" name="amenities[]" value="{{ $type->id }}">{{ $type->name }}

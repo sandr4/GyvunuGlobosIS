@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAmenityRoomsTable extends Migration
+class CreateAmenityAnimalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class CreateAmenityRoomsTable extends Migration
      */
     public function up()
     {
-            Schema::create('amenity_rooms', function (Blueprint $table) {
+            Schema::create('amenity_animals', function (Blueprint $table) {
            $table->increments('id');
-           $table->integer('room_id')->unsigned();
+           $table->integer('animal_id')->unsigned();
            $table->integer('amenity_id')->nullable()->unsigned();
            $table->timestamps();
         });
@@ -28,8 +28,8 @@ class CreateAmenityRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropForeign(['room_id']);
+        Schema::dropForeign(['animal_id']);
         Schema::dropForeign(['amenity_id']);
-        Schema::drop('amenity_rooms');
+        Schema::drop('amenity_animals');
     }
 }

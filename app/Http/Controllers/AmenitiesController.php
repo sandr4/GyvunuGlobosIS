@@ -20,13 +20,13 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 use Image;
 use Storage;
-use App\Room;
+use App\Animal;
 use App\Rate;
-use App\RatedRooms;
-use App\RoomType;
+use App\RatedAnimals;
+use App\AnimalType;
 use App\StarsValue;
 use App\Amenities;
-use App\AmenityRooms;
+use App\AmenityAnimals;
 
 
 class AmenitiesController extends Controller
@@ -131,7 +131,7 @@ class AmenitiesController extends Controller
     {
 
         $amenity = Amenities::find($id);
-        $amenity_room = AmenityRooms::where('amenity_id',$amenity->id)-> count();
+        $amenity_room = AmenityAnimals::where('amenity_id',$amenity->id)-> count();
         if($amenity_room != NULL)
         {
             Session::flash('warning', 'Patogumas negali būti pašalintas! Jis yra naudojamas');

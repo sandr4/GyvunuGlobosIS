@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RoomType extends Model
+class AnimalType extends Model
 {
     //
      public function room_type()
     {
-        return $this->belongsTo('App\Room', 'room_type_fk', 'id');
+        return $this->belongsTo('App\Animal', 'room_type_fk', 'id');
     }
 }

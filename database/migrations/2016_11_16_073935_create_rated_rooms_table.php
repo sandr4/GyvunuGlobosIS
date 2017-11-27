@@ -13,9 +13,9 @@ class CreateRatedRoomsTable extends Migration
     public function up()
     {
         //
-    Schema::create('rated_rooms', function (Blueprint $table) {
+    Schema::create('rated_animals', function (Blueprint $table) {
            $table->increments('id');
-           $table->integer('room_id')->unsigned();
+           $table->integer('animal_id')->unsigned();
            $table->integer('rate_id')->nullable()->unsigned();
            $table->timestamps();
         });
@@ -29,8 +29,8 @@ class CreateRatedRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropForeign(['room_id']);
+        Schema::dropForeign(['animal_id']);
          Schema::dropForeign(['rate_id']);
-        Schema::drop('rated_rooms');
+        Schema::drop('rated_animals');
     }
 }

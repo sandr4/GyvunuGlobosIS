@@ -11,55 +11,55 @@ class AmenityRoomsSeeder extends Seeder
      */
     public function run()
     {
-          $amenity_room = array(
+          $amenity_animal = array(
             "Message_1" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 1,
-                    'room_id'     => 1, 
+                    'animal_id'     => 1, 
                     'amenity_id'  => 3,    
 
                 ),
             ),
             
             "message_2" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 2,
-                    'room_id'     => 2, 
+                    'animal_id'     => 2, 
                     'amenity_id'  => 6,   
                 ),
             ), 
             "message_5" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 5,
-                    'room_id'     => 2, 
+                    'animal_id'     => 2, 
                     'amenity_id'  => 4,   
                 ),
             ), 
             "message_3" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 3,
-                    'room_id'     => 3, 
+                    'animal_id'     => 3, 
                     'amenity_id'  => 7,   
                 ),
             ), 
              "message_8" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 6,
-                    'room_id'     => 3, 
+                    'animal_id'     => 3, 
                     'amenity_id'  => 4,   
                 ),
             ), 
             "message_7" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 7,
-                    'room_id'     => 3, 
+                    'animal_id'     => 3, 
                     'amenity_id'  => 1,   
                 ),
             ), 
             "message_4" => array(
-                'amenity_room' => array(
+                'amenity_animal' => array(
                     'id'          => 4,
-                    'room_id'     => 4, 
+                    'animal_id'     => 4, 
                     'amenity_id'  => 8,   
                 ),
             ), 
@@ -67,11 +67,11 @@ class AmenityRoomsSeeder extends Seeder
 
         );
 
-        foreach ($amenity_room as $ameni) {
-            DB::table('amenity_rooms')->insert([
-                'id'             => $ameni['amenity_room']['id'],
-                'room_id'          => $ameni['amenity_room']['room_id'],
-                'amenity_id'    => $ameni['amenity_room']['amenity_id'],
+        foreach ($amenity_animal as $ameni) {
+            DB::table('amenity_animals')->insert([
+                'id'             => $ameni['amenity_animal']['id'],
+                'animal_id'          => $ameni['amenity_animal']['animal_id'],
+                'amenity_id'    => $ameni['amenity_animal']['amenity_id'],
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()
             ]);

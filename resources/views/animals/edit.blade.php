@@ -1,6 +1,6 @@
 @extends('GyvunuGloba.Layout.main')
 
-@section('title','|Kambario redagavimas')
+@section('title','|Gyvūno redagavimas')
 
 @section('width') <div class="col-md-12"> @endsection
 
@@ -8,26 +8,26 @@
 @section('content')
 
   <div class="col-md-12 alert alert-info text-center" role="alert">
-    <strong>Kambario redagavimas:</strong> Pakeiskite norimą informacija.
+    <strong>Gyvūno redagavimas:</strong> Pakeiskite norimą informacija.
   </div>
 
   <div class="col-md-6 well">
 
 
-      <h1>Redaguoti kambario informaciją</h1>
+      <h1>Redaguoti Gyvūno informaciją</h1>
       <hr>
-      {!! Form::model($data['room'], ['route' => ['rooms.update', $data['room'] -> id], 'method'=>'PUT', 'files' =>true]) !!}
-        {{ Form::label('number','Kambario numeris:') }}
-        {{ Form::number('number',null, ["class" => 'form-control', 'required' => '','min' => '0','minlength' => '2', 'maxlength' => '3' ]) }}
+      {!! Form::model($data['animal'], ['route' => ['animals.update', $data['animal'] -> id], 'method'=>'PUT', 'files' =>true]) !!}
+         {{ Form::label('body','Gyvūno vardas:') }}
+         {{ Form::textarea('body',null, array('class' => 'form-control', 'required' => '','minlength' => '10', 'maxlength' => '255')) }}
         
         <div class="form-group">
-            <label for="">Kambario tipas</label>
-            {{ Form::select('room_type_fk', $data['cat'],null,array('class'=>'form-control','style'=>'width: 25%;')) }}
+            <label for="">Gyvūno tipas</label>
+            {{ Form::select('animal_type_fk', $data['cat'],null,array('class'=>'form-control','style'=>'width: 25%;')) }}
         </div>
 
         <div class="form-group">
-       <label for="">Kambario patogumai: </label>
-        <div class="checkbox" name="room_type_fk">    
+       <label for="">Gyvūno patogumai: </label>
+        <div class="checkbox" name="animal_type_fk">    
        
  
         @foreach($data['catt'] as $type) 
@@ -48,7 +48,7 @@
         {{ Form::textarea('body',null, array('class' => 'form-control', 'required' => '','minlength' => '10', 'maxlength' => '255')) }}
         <br>
         <div class="col-sm-6">
-         {!! Html::linkRoute('rooms.show', 'Atšaukti', array($data['room']->id), array('class' => 'btn btn-danger btn-block')) !!}
+         {!! Html::linkRoute('animals.show', 'Atšaukti', array($data['animal']->id), array('class' => 'btn btn-danger btn-block')) !!}
           </div>
           <div class="col-sm-6">
             
@@ -59,10 +59,10 @@
 
   </div>
     <div class="col-md-6  well">
-    <h1>Kambario nuotrauka</h1>
+    <h1>Gyvūno nuotrauka</h1>
     <hr>
-    @if($data['room']->photo_fk != NULL)
-        <img src="{{ asset($data['room']->photo_fk) }}" width="650" height="450" alt="Avatar" id="avatar_show" class="img-thumbnail" />
+    @if($data['animal']->photo_fk != NULL)
+        <img src="{{ asset($data['animal']->photo_fk) }}" width="650" height="450" alt="Avatar" id="avatar_show" class="img-thumbnail" />
     @else
         <img src="/Style/Images/avatar2.jpg" width="650" height="450" alt="Avatar" id="avatar_show" class="img-thumbnail" />
     @endif

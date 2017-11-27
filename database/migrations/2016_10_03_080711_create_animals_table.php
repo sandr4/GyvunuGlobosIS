@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomsTable extends Migration
+class CreateAnimalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('animals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('number')->nullable()->unsigned();
+            $table->text('name');
             
-            $table->integer('room_type_fk')->default(1)->unsigned();
-            $table->string('price', 20);
+            $table->integer('animal_type_fk')->default(1)->unsigned();
+            $table->string('age', 20);
             $table->text('body');
             
             $table->string('photo_fk',500);
@@ -32,6 +32,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('rooms');
+        Schema::drop('animals');
     }
 }

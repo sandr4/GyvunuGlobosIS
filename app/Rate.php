@@ -8,11 +8,11 @@ class Rate extends Model
 {
     public function room()
     {
-    	return $this->belongsTo('App\Room');
+    	return $this->belongsTo('App\Animal');
     }
 	public function rated_rooms()
     {
-        return $this->belongsTo('App\RatedRooms');
+        return $this->belongsTo('App\RatedAnimals');
     }
     public function stars_values()
     {

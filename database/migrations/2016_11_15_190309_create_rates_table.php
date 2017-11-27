@@ -19,12 +19,12 @@ class CreateRatesTable extends Migration
             $table->text('comment');
             $table->integer('value_id')->nullable()->unsigned();
             $table->boolean('approved');
-            $table->integer('room_id')->unsigned();
+            $table->integer('animal_id')->unsigned();
              $table->integer('photo_fk')->nullable()->unsigned();
             $table->timestamps();
         });
      Schema::table('rates', function ($table){
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');
         });
     }
 
@@ -35,7 +35,7 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropForeign(['room_id']);
+        Schema::dropForeign(['animal_id']);
         Schema::dropForeign(['value_id']);
         Schema::drop('rates');
     }

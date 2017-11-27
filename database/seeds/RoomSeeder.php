@@ -11,80 +11,80 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        //Rooms:
-        $rooms = array(
-            "Room_1" => array(
+        //animals:
+        $animals = array(
+            "animal_1" => array(
 
-                'room' => array(
+                'animal' => array(
                     'id'          => 1, 
-                    'number'       => 101, 
-                    'room_type_fk' => 0,
-                    'price'       => 28,
+                    'name'       => 'Hiris',
+                    'animal_type_fk' => 0,
+                    'age'       => 28,
                     'body'        => ' kambario plotas, palyginus su standartiniu kambariu – didesnis. Kambarys padalintas į dvi zonas: miegamąją ir svetainės. Kartais jos yra atskiriamos dekoratyvine užuolaida, o kartais – tik grindų lygiu. Baldai čia geresni nei standartiniuose kambariuose, aptarnavimas – taip pat. Jie dažniausiai būna 5*, rečiau 4* viešbučiuose ir kainuoja apie 30 proc. brangiau negu standartiniai kambariai.',
-                    'photo_fk'     =>'database/rooms/vienas.jpg',
+                    'photo_fk'     =>'database/animals/vienas.jpg',
 
                 ),
 
                 'photos' => array(
-                    'url'       => 'database/rooms/vienas.jpg',
+                    'url'       => 'database/animals/vienas.jpg',
                     'ext'       => 'jpg',
                     'size'      => 16117,
                     'cover'     => 1,
                 ),
             ),
             //Sekantys kambariai:
-              "Room_2" => array(
+              "animal_2" => array(
 
-                'room' => array(
+                'animal' => array(
                     'id'          => 2, 
-                    'number'       => 102, 
-                    'room_type_fk' => 1,
-                    'price'       => 50,
+                    'name'       => 'Biris',
+                    'animal_type_fk' => 1,
+                    'age'       => 50,
                     'body'        => 'Dviejų kambarių numeris su prieškambariu. Sieninė spinta, šaldytuvas, odiniai baldai, kabelinė televizija, du televizoriai, oro kondicionierius, plati dvigulė lova, elektriniai šildytuvai, vonios kambarys, plaukų džiovintuvas, interneto ryšys ',
-                    'photo_fk'     =>'database/rooms/du.jpg',
+                    'photo_fk'     =>'database/animals/du.jpg',
 
                 ),
 
                 'photos' => array(
-                    'url'       => 'database/rooms/du.jpg',
+                    'url'       => 'database/animals/du.jpg',
                     'ext'       => 'jpg',
                     'size'      => 18883,
                     'cover'     => 1,
                 ),
             ),
-               "Room_3" => array(
+               "animal_3" => array(
 
-                'room' => array(
+                'animal' => array(
                     'id'          => 3, 
-                    'number'       => 103, 
-                    'room_type_fk' => 2,
-                    'price'       => 68,
+                    'name'       => 'Kairis',
+                    'animal_type_fk' => 2,
+                    'age'       => 68,
                     'body'        => 'du gretimi kambariai (pagal dydį – pusantro), skirti šeimai. Kiekviename iš jų įprastai stovi dvi lovos (vaikų kambaryje lovelė gali būti dviejų aukštų). Prieš rezervuojant šios kategorijos kambarį, vertėtų pasitikslinti, ar tarp kambarių yra durys (kartais tarp jų būna tiesiog palikta didelė ertmė). Dažniausiai jis kainuoja apie 30 proc. brangiau nei standartinis kambarys, kuriame pastatomos dvi papildomos lovelės.',
-                    'photo_fk'     =>'database/rooms/trys.jpg',
+                    'photo_fk'     =>'database/animals/trys.jpg',
 
                 ),
 
                 'photos' => array(
-                    'url'       => 'database/rooms/trys.jpg',
+                    'url'       => 'database/animals/trys.jpg',
                     'ext'       => 'jpg',
                     'size'      => 19604,
                     'cover'     => 1,
                 ),
             ), 
-              "Room_4" => array(
+              "animal_4" => array(
 
-                'room' => array(
+                'animal' => array(
                     'id'          => 4, 
-                    'number'       => 104, 
-                    'room_type_fk' => 3,
-                    'price'       => 20,
+                    'name'       => 'Kiris',
+                    'animal_type_fk' => 3,
+                    'age'       => 20,
                     'body'        => 'du gretimi kambariai (pagal dydį – pusantro), skirti šeimai. Kiekviename iš jų įprastai stovi dvi lovos (vaikų kambaryje lovelė gali būti dviejų aukštų). Prieš rezervuojant šios kategorijos kambarį, vertėtų pasitikslinti, ar tarp kambarių yra durys (kartais tarp jų būna tiesiog palikta didelė ertmė). Dažniausiai jis kainuoja apie 30 proc. brangiau nei standartinis kambarys, kuriame pastatomos dvi papildomos lovelės.',
-                    'photo_fk'     =>'database/rooms/keturi.jpg',
+                    'photo_fk'     =>'database/animals/keturi.jpg',
 
                 ),
 
                 'photos' => array(
-                    'url'       => 'database/rooms/keturi.jpg',
+                    'url'       => 'database/animals/keturi.jpg',
                     'ext'       => 'jpg',
                     'size'      => 20569,
                     'cover'     => 1,
@@ -93,15 +93,15 @@ class RoomSeeder extends Seeder
 
         );
 
-        foreach ($rooms as $usr) {
+        foreach ($animals as $usr) {
             //Registration:
-            DB::table('rooms')->insert([
-                'id'             => $usr['room']['id'],
-                'number'          => $usr['room']['number'],
-                'room_type_fk'    => $usr['room']['room_type_fk'],
-                'price'          => $usr['room']['price'],
-                'body'           => $usr['room']['body'],
-                'photo_fk'           => $usr['room']['photo_fk'],
+            DB::table('animals')->insert([
+                'id'             => $usr['animal']['id'],
+                'name'          => $usr['animal']['name'],
+                'animal_type_fk'    => $usr['animal']['animal_type_fk'],
+                'age'          => $usr['animal']['age'],
+                'body'           => $usr['animal']['body'],
+                'photo_fk'           => $usr['animal']['photo_fk'],
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()
             ]);

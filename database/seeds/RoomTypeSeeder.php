@@ -12,9 +12,9 @@ class RoomTypeSeeder extends Seeder
     public function run()
     {
         //
-          $groups = ['vienvietis', 'dvivietis', 'trivietis', 'keturvietis'];
+          $groups = ['Šuo', 'Katė', 'Šinšila', 'Jūros kiaulytė'];
         foreach ($groups as $group) {
-            DB::table('room_types')->insert([
+            DB::table('animal_types')->insert([
                 'name' => $group,
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime()

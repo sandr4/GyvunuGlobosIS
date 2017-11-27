@@ -12,7 +12,7 @@ class Photo extends Model
     }
     public function room()
     {
-        return $this->belongsTo('App\Room', 'photo_fk', 'id');
+        return $this->belongsTo('App\Animal', 'photo_fk', 'id');
     }
     public function rate()
     {

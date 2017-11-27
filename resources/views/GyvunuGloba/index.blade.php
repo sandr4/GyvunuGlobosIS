@@ -6,33 +6,33 @@
 @section('content')
  
 
-  @foreach ($data['rooms'] as $room)
+  @foreach ($data['animals'] as $animal)
 
   <div class="col-sm-4 col-lg-4 col-md-4">
       <div class="thumbnail">          
-      @if($room->photo_fk != NULL)
-        <img src="{{ asset($room->photo_fk) }}" width="320" height="150" alt="Avatar" id="avatar_show" class="img-thumbnail">
+      @if($animal->photo_fk != NULL)
+        <img src="{{ asset($animal->photo_fk) }}" width="320" height="150" alt="Avatar" id="avatar_show" class="img-thumbnail">
       @else
        <img src="/Style/Images/avatar2.jpg" width="320" height="150" alt="Avatar" id="avatar_show" class="img-thumbnail">
       @endif
       <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
           <div class="caption">
          
-              @if($room->room_type_fk  == '0')
+              @if($animal->animal_type_fk  == '0')
 
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Šuo</a>
+              <h4><a href="{{ route('animals.show', $animal->id) }}">Šuo</a>
               @endif
-              @if($room->room_type_fk  == '1')
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Katė</a>
+              @if($animal->animal_type_fk  == '1')
+              <h4><a href="{{ route('animals.show', $animal->id) }}">Katė</a>
               @endif
-              @if($room->room_type_fk  == '2')
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Šinšila</a>
+              @if($animal->animal_type_fk  == '2')
+              <h4><a href="{{ route('animals.show', $animal->id) }}">Šinšila</a>
               @endif
-              @if($room->room_type_fk  == '3')
-              <h4><a href="{{ route('rooms.show', $room->id) }}">Jūrų Kiaulytė</a>
+              @if($animal->animal_type_fk  == '3')
+              <h4><a href="{{ route('animals.show', $animal->id) }}">Jūrų Kiaulytė</a>
               @endif
               </h4>
-              <p>{{ substr($room->body, 0, 50) }}{{ strlen($room->body) > 50 ? "..." : "" }} </p>
+              <p>{{ substr($animal->body, 0, 50) }}{{ strlen($animal->body) > 50 ? "..." : "" }} </p>
               </h4>
           </div>
       </div>

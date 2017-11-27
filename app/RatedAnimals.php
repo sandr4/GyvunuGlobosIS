@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RatedRooms extends Model
+class RatedAnimals extends Model
 {
      public function rate()
     {
@@ -12,6 +12,6 @@ class RatedRooms extends Model
     }
      public function room()
     {
-    	return $this->belongsTo('App\Room');
+    	return $this->belongsTo('App\Animal');
     }
 }

@@ -47,10 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('decorations','DecorationController');
 	//-------------------
 		//--------------------
-	Route::resource('rooms','RoomController');
+	Route::resource('animals','AnimalController');
 	Route::resource('amenities','AmenitiesController');
 
-	Route::post('rooms/{room_id}', [
+	Route::post('animal/{room_id}', [
 	'uses' => 'RateController@store',
 	'as' => 'rate.store']);
 });

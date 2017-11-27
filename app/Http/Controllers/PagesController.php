@@ -1,21 +1,21 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use App\Room;
-use App\RatedRooms;
+use App\Animal;
+use App\RatedAnimals;
 class PagesController extends Controller
 {
 	public function getIndex() {
 
 		//$cat=array();
-		$rooms = Room::orderBy('id', 'asc')->take(4)->get();
-       /* foreach($rooms = Room::orderBy('id', 'asc')->take(4)->get() as $ct)
+		$animals = Animal::orderBy('id', 'asc')->take(4)->get();
+       /* foreach($animals = Room::orderBy('id', 'asc')->take(4)->get() as $ct)
          {
-         	$users  = RatedRooms::where('room_id',$ct->id)->leftJoin('rooms', 'rated_rooms.room_id', '=', 'rooms.id') -> avg('rate_id');
+         	$users  = RatedAnimals::where('room_id',$ct->id)->leftJoin('rooms', 'rated_rooms.room_id', '=', 'rooms.id') -> avg('rate_id');
          	$cat[]= $users;
          }  */
 		$data = array(
-            'rooms' 	=> $rooms,
+            'animals' 	=> $animals,
             //'users'		=> $users,
             //'cat'		=> $cat,
         );
@@ -25,12 +25,12 @@ class PagesController extends Controller
 	public function home() {
 
 		//$cat=array();
-		$rooms = Room::orderBy('id', 'asc')->take(4)->get();
-		//$users  = RatedRooms::leftJoin('rooms', 'rated_rooms.room_id', '=', 'rooms.id') -> avg('rate_id');
+		$animals = Animal::orderBy('id', 'asc')->take(4)->get();
+		//$users  = RatedAnimals::leftJoin('rooms', 'rated_rooms.room_id', '=', 'rooms.id') -> avg('rate_id');
 
-        /* foreach($rooms = Room::orderBy('id', 'asc')->take(4)->get() as $ct)
+        /* foreach($animals = Room::orderBy('id', 'asc')->take(4)->get() as $ct)
          {	
-         	$average=RatedRooms::where('room_id', $ct->id) -> avg('rate_id');
+         	$average=RatedAnimals::where('room_id', $ct->id) -> avg('rate_id');
          	if($average!=NULL){
          		$arr=$ct->id;
          	}else $arr=0;
@@ -38,7 +38,7 @@ class PagesController extends Controller
          	$cat2[]=$arr;
          }    */ 	
 		$data = array(
-            'rooms' 	=> $rooms,
+            'animals' 	=> $animals,
             //'users'		=> $users,
             //'cat'		=> $cat,
             //'cat2'		=> $cat2,

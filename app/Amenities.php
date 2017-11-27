@@ -8,11 +8,11 @@ class Amenities extends Model
 {
     public function amenities()
     {
-        return $this->belongsTo('App\Room');
+        return $this->belongsTo('App\Animal');
     }
     public function amenity_room()
     {
-        return $this->belongsTo('App\AmenityRooms');
+        return $this->belongsTo('App\AmenityAnimals');
     }
 
 }
