@@ -16,7 +16,7 @@
         
     <div class="col-md-2">
       <a href="{{ route('animals.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti gyvūną</a>
-      <a href="{{ route('amenities.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti kažką</a>
+      <a href="{{ route('amenities.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Pridėti informaciją</a>
     </div>
         @endif
         @endif

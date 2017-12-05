@@ -9,9 +9,9 @@ class PagesController extends Controller
 
 		//$cat=array();
 		$animals = Animal::orderBy('id', 'asc')->take(4)->get();
-       /* foreach($animals = Room::orderBy('id', 'asc')->take(4)->get() as $ct)
+       /* foreach($animals = animal::orderBy('id', 'asc')->take(4)->get() as $ct)
          {
-         	$users  = RatedAnimals::where('room_id',$ct->id)->leftJoin('rooms', 'rated_rooms.room_id', '=', 'rooms.id') -> avg('rate_id');
+         	$users  = RatedAnimals::where('animal_id',$ct->id)->leftJoin('animals', 'rated_animals.animal_id', '=', 'animals.id') -> avg('rate_id');
          	$cat[]= $users;
          }  */
 		$data = array(
@@ -26,11 +26,11 @@ class PagesController extends Controller
 
 		//$cat=array();
 		$animals = Animal::orderBy('id', 'asc')->take(4)->get();
-		//$users  = RatedAnimals::leftJoin('rooms', 'rated_rooms.room_id', '=', 'rooms.id') -> avg('rate_id');
+		//$users  = RatedAnimals::leftJoin('animals', 'rated_animals.animal_id', '=', 'animals.id') -> avg('rate_id');
 
-        /* foreach($animals = Room::orderBy('id', 'asc')->take(4)->get() as $ct)
+        /* foreach($animals = animal::orderBy('id', 'asc')->take(4)->get() as $ct)
          {	
-         	$average=RatedAnimals::where('room_id', $ct->id) -> avg('rate_id');
+         	$average=RatedAnimals::where('animal_id', $ct->id) -> avg('rate_id');
          	if($average!=NULL){
          		$arr=$ct->id;
          	}else $arr=0;

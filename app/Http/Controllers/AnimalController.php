@@ -75,32 +75,32 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        
+//        dd($request);
         //tikrinu ar vartotojas prisijunges
         if(Auth::check()){
         if(Auth::user()->Role->id == 1)
         {
         //validate the data
         $this->validate($request,array(
-            'number'        => 'required|max:3',
-            'price'         => 'required|max:4',
+            'name'        => 'required|max:10',
+            'age'         => 'required|max:4',
             'body'          => 'required',
             'animal_type_fk'  => 'required',
             'animal_image'    => 'sometimes|image'
             
             ));
-            //tikrinu ar kambario numeris neegzistuoja
+
             $v = Validator::make($request->all(), []);  
-            if(Animal::where('number', $request->input('number'))->exists())
+            if(Animal::where('name', $request->input('name'))->exists())
             {
-                Session::flash('warning', 'Kambario numeris jau egzistuoja!');
+                Session::flash('warning', 'Gyvūno vardas jau egzistuoja!');
                 return redirect()->back()->withErrors($v->errors())->withInput();
             }
 
         // store in the database
         $animal = new Animal;
-        $animal -> number       = $request -> number;
-        $animal -> price        = $request -> price;
+        $animal -> name       = $request -> name;
+        $animal -> age        = $request -> age;
         $animal -> body         = $request -> body;
         $animal -> animal_type_fk = $request -> animal_type_fk;
 
@@ -122,6 +122,8 @@ class AnimalController extends Controller
             $photo->save();
             $animal -> photo_fk = $photo->url;
         }
+
+//        dd($animal);
         
         $animal -> save();
 
@@ -224,8 +226,8 @@ class AnimalController extends Controller
 
         // Validate the data
         $this->validate($request,array(
-            'number'        => 'required|max:3',
-            'price'         => 'required|max:4',
+            'name'        => 'required|max:10',
+            'age'         => 'required|max:4',
             'body'          => 'required',
             'animal_type_fk'  => 'required',
             'animal_image'    => 'image'
@@ -233,8 +235,8 @@ class AnimalController extends Controller
 
         // Save to the database
         $animal = Animal::find($id);
-        $animal -> number       = $request -> input('number');
-        $animal -> price        = $request -> input('price');
+        $animal -> name       = $request -> input('name');
+        $animal -> age        = $request -> input('age');
         $animal -> body         = $request -> input('body');
         $animal -> animal_type_fk   = $request -> input('animal_type_fk');
 

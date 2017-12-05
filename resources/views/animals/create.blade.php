@@ -1,6 +1,6 @@
 @extends('GyvunuGloba.Layout.main')
 
-@section('title','|Pridėti kambarį')
+@section('title','|Pridėti gyvūną')
 
 @section('width') <div class="col-md-12"> @endsection
 
@@ -8,20 +8,20 @@
 @section('content')
 
   <div class="col-md-12 alert alert-info text-center" role="alert">
-    <strong>Naujo kambario kūrimas:</strong> Pridėkite norimą informacija.
+    <strong>Naujo gyvūno skelbimo kūrimas:</strong> Pridėkite norimą informaciją.
   </div>
 
 
 <div class="col-md-12 well">
   <div class="col-md-6 well">
-      <h1>Pridėti naują kambarį</h1>
+      <h1>Pridėti naują gyvūną</h1>
       <hr>
 
       {!! Form::open(array('route' => 'animals.store', 'data-parsley-validate' =>'', 'files' => true)) !!}
-        {{ Form::label('number','Kambario numeris:') }}
-        {{ Form::number('number',0, array('class' => 'form-control', 'required' => '')) }}
-        {{ Form::label('price','Kaina:') }}
-        {{ Form::number('price','0', array('class' => 'form-control', 'required' => '','min' => '0')) }}
+        {{ Form::label('name','Gyvūno vardas:') }}
+        {{ Form::text('name', '', array('class' => 'form-control', 'required' => '')) }}
+        {{ Form::label('age','Gyvūno amžius:') }}
+        {{ Form::number('age','0', array('class' => 'form-control', 'required' => '','min' => '0')) }}
 
       
         <div class="form-group">
@@ -41,7 +41,7 @@
         {{ Form::textarea('body',null, array('class' => 'form-control', 'required' => '','minlength' => '10', 'maxlength' => '255')) }}
   </div>
   <div class="col-md-6 well ">
-    <h1>Kambario nuotrauka</h1>
+    <h1>Gyvūno nuotrauka</h1>
     <hr>
         <img src="/Style/Images/avatar2.jpg" width="440" height="250" alt="Avatar" id="avatar_show" class="img-thumbnail " style="margin-top: 20px;" />
 

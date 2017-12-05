@@ -17,8 +17,8 @@
       <h1>Redaguoti Gyvūno informaciją</h1>
       <hr>
       {!! Form::model($data['animal'], ['route' => ['animals.update', $data['animal'] -> id], 'method'=>'PUT', 'files' =>true]) !!}
-         {{ Form::label('body','Gyvūno vardas:') }}
-         {{ Form::textarea('body',null, array('class' => 'form-control', 'required' => '','minlength' => '10', 'maxlength' => '255')) }}
+         {{ Form::label('name','Gyvūno vardas:') }}
+         {{ Form::text('name',null, array('class' => 'form-control', 'required' => '','minlength' => '10', 'maxlength' => '255')) }}
         
         <div class="form-group">
             <label for="">Gyvūno tipas</label>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-       <label for="">Gyvūno patogumai: </label>
+       <label for="">Gyvūno papildoma informacija: </label>
         <div class="checkbox" name="animal_type_fk">    
        
  
@@ -39,8 +39,8 @@
 
 </div>
        </div>
-        {{ Form::label('price','Kaina:') }}
-        {{ Form::number('price',null, array('class' => 'form-control', 'required' => '','min' => '0','minlength' => '3', 'maxlength' => '4')) }}
+        {{ Form::label('age','Amžius:') }}
+        {{ Form::number('age',null, array('class' => 'form-control', 'required' => '','min' => '0','minlength' => '3', 'maxlength' => '4')) }}
 
 
       

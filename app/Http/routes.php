@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('animals','AnimalController');
 	Route::resource('amenities','AmenitiesController');
 
-	Route::post('animal/{room_id}', [
+	Route::post('animal/{animal_id}', [
 	'uses' => 'RateController@store',
 	'as' => 'rate.store']);
 });

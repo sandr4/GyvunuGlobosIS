@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <input type="number" hidden name="kambario_tipas" id="kambario_tipas" />
+            <input type="number" hidden name="gyvuno_tipas" id="gyvuno_tipas" />
             <hr />
             <button type="button" class="btn btn-primary btn-lg btn-block">Ieškoti</button>
         </form>

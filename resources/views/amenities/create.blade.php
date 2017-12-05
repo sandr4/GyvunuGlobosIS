@@ -1,6 +1,6 @@
 @extends('GyvunuGloba.Layout.main')
 
-@section('title','|Pridėti patogumą')
+@section('title','|Pridėti papildomą informaciją')
 
 @section('width') <div class="col-md-12"> @endsection
 
@@ -8,14 +8,14 @@
 @section('content')
 
   <div class="col-md-12 alert alert-info text-center" role="alert">
-    <strong>Naujo patogumo kūrimas:</strong> Pridėkite norimą informacija.
+    <strong>Papildomos informacijos pridėjimas:</strong> Pridėkite norimą informacija.
   </div>
 
 
 <div class="col-md-12 well">
 
   <div class="col-md-6 well ">
-    <h1>Egzistuojantys patogumai:</h1>
+    <h1>Egzistuojantys privalumai:</h1>
     <hr>
 
         <div class="checkbox" name="room_type_fk">
@@ -37,11 +37,11 @@
 
     </div>
   <div class="col-md-6 well">
-      <h1>Pridėti naują patogumą</h1>
+      <h1>Pridėti naujos informacijos</h1>
       <hr>
       {!! Form::open(array('route' => 'amenities.store', 'data-parsley-validate' =>'')) !!}
-        <h3>Patogumo numeris: <small>{{ $data['cat1'] }}</small></h3>
-        <h3>Patogumo pavadinimas:</h3>
+        <h3>Papildomos informacijos numeris: <small>{{ $data['cat1'] }}</small></h3>
+        <h3>Pavadinimas:</h3>
         {{ Form::text('name',null, array('class' => 'form-control','required' => '')) }}
         {{ Form::submit('Pridėti', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
         {!! Form::close() !!}     
